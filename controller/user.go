@@ -6,9 +6,9 @@ import (
 	"myProject/model"
 	"myProject/utils/httpResp"
 	"net/http"
-	"myProject/datastore/postgres"
-"fmt"
+	"fmt"
 	"time"
+
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -94,6 +94,14 @@ func Loginhandler(w http.ResponseWriter, r *http.Request) {
 	httpResp.RespondWithJSON(w, http.StatusOK, map[string]string{"message": "successful"})
 }
 
+func LogoutHandler(w http.ResponseWriter, r *http.Request) {
+	http.SetCookie(w,&http.Cookie{
+		Name : "admin-cookie",
+		Expires: time.Now(),
+	})
+	fmt.Println("logout successful")
+	httpResp.RespondWithJSON(w,http.StatusOK,map[string]string{"message":"logout successful"})
+}
 
 
 //////////////////////////////////

@@ -131,3 +131,15 @@ function appendBotReply(message) {
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
+function Logout(){
+  fetch("/logout")
+  .then(res => {
+      if (res.ok){
+          window.open("index.html","_self")
+      }else{
+          throw new Error(res.statusText)
+      }
+  }).catch(e =>{
+      alert(e)
+  })
+}
